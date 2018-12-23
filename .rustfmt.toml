@@ -1,0 +1,11 @@
+condense_wildcard_suffixes = true
+format_doc_comments = true
+format_strings = true
+merge_derives = true
+merge_imports = true
+normalize_comments = true
+reorder_impl_items = true
+struct_lit_single_line = false
+use_field_init_shorthand = true
+use_try_shorthand = true
+wrap_comments = true
