@@ -3,5 +3,6 @@ name = "ignore-result"
 version = "0.1.0"
 authors = ["Mahmoud Al-Qudsi <mqudsi@neosmart.net>"]
 edition = "2018"
+description = "Adds a `Result<_, _>.ignore()` method to ignore the return value of a function call without panicking in case of error."
 
 [dependencies]
