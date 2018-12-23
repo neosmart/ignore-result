@@ -63,3 +63,12 @@ if foo.is_err() {
 ```
 
 and be on your merry way.
+
+## Why is this safe?
+
+Calling `foo().ignore()` returns `()` regardless of whether `foo()` evaluated to `Ok(_)` or `Err(_)`
+-- meaning it guarantees that you are not (incorrectly) relying on an `Ok(_)` result. In an ideal
+world, the implementation of `fn ignore(..)` would be `fn ignore(Self)` so that the `Result<_, _>`
+is fully consumed (i.e. there's no way to get at the original contents after calling
+`result.ignore()`) but unfortunately as a result of language limitations pertaining to the use of
+traits to extend existing objects, that is not possible.
