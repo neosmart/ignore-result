@@ -40,3 +40,5 @@ test: build
 update:
 	@$(CARGO) update
 
+README.pdf: README.md
+	pandoc $? -o $@
