@@ -1,6 +1,9 @@
 # `Result-Ignore` for rust
 _Safely ignore errors in function return values when the result isn't critical_
 
+[![crates.io](https://img.shields.io/crates/v/ignore-result.svg)](https://https://crates.io/crates/ignore-result)
+[![docs.rs](https://docs.rs/ignore-result/badge.svg)](https://docs.rs/crate/ignore-result)
+
 This crate adds a `.ignore()` function to `Result` instances that ignores both the `Ok` and `Err`
 variants of the result, silencing compiler warnings about unused errors without needing to resort to
 empty `match` blocks or panicking in case you call `.unwrap()` on what turns out to be an error.
@@ -67,8 +70,10 @@ and be on your merry way.
 ## Why is this safe?
 
 Calling `foo().ignore()` returns `()` regardless of whether `foo()` evaluated to `Ok(_)` or `Err(_)`
--- meaning it guarantees that you are not (incorrectly) relying on an `Ok(_)` result. In an ideal
-world, the implementation of `fn ignore(..)` would be `fn ignore(Self)` so that the `Result<_, _>`
-is fully consumed (i.e. there's no way to get at the original contents after calling
-`result.ignore()`) but unfortunately as a result of language limitations pertaining to the use of
-traits to extend existing objects, that is not possible.
+-- meaning it guarantees that you are not (incorrectly) relying on an `Ok(_)` result.
+
+The `ignore` function actually consumes the `Result` (being declared as `fn ignore(self) -> ()`)
+guaranteeing that after calling `foo().ignore()` there is no way to get at either the `Ok` or `Err`
+variants of the original result, which in turn means there's no way the caller can "presume it's
+`Ok` and use the return value" (which is the original motivation behind using monads rather than
+exceptions in rust), and it additionally makes your intent clear.
