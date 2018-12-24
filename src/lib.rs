@@ -11,8 +11,8 @@ mod tests;
 /// A call to [`Ignore::ignore()`] avoids compiler warnings about unused
 /// results, without requiring a possibly unsafe call to `.unwrap()` if
 /// the success of the preceding function call is not guaranteed.
-pub trait Ignore {
-    fn ignore(&self) -> () {}
+pub trait Ignore: Sized {
+    fn ignore(self) -> () {}
 }
 
 impl<T, E> Ignore for Result<T, E> {}
