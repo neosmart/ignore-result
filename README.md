@@ -1,4 +1,4 @@
-# `Result-Ignore` for rust
+# `ignore-result` for rust
 _Safely ignore errors in function return values when the result isn't critical_
 
 [![crates.io](https://img.shields.io/crates/v/ignore-result.svg)](https://https://crates.io/crates/ignore-result)
