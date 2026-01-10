@@ -60,7 +60,7 @@ Or use this crate and write this instead:
 use ignore_result::Ignore;
 
 if foo.is_err() {
-    cleanup.ignore();
+    cleanup().ignore();
     return foo;
 }
 ```
